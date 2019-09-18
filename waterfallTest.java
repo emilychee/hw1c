@@ -25,6 +25,16 @@ public class waterfallTest {
 		Graphics2D g2 = image.createGraphics();
 		chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, null);
 		g2.dispose();
+		
+		CategoryPlot plot = (CategoryPlot) chart.getPlot();
+		CategoryItemRenderer renderer = plot.getRenderer();
+		StandardCategoryToolTipGenerator tt = new StandardCategoryToolTipGenerator();
+		renderer.setSeriesToolTipGenerator(0, tt);
+		CategoryToolTipGenerator tt2 = renderer.getToolTipGenerator(0, 0);
+
+		StandardCategoryURLGenerator url1 = new StandardCategoryURLGenerator();
+		renderer.setSeriesItemURLGenerator(0, url1);
+		CategoryURLGenerator url2 = renderer.getItemURLGenerator(0, 0);
 	}
 
 	private static JFreeChart createWaterfallChart() {
